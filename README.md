@@ -37,10 +37,19 @@ $ kubectl apply -f {YAML_FILE}
 $ kubectl describe {KUBERNETES_OBJECT_TYPE} {OBJECT_NAME}
 
 # Get kubernetes object info and status
-# kubectl get {KUBERNETES_OBJECT_TYPE} -n {NAMESPACE} [-o wide]
+$ kubectl get {KUBERNETES_OBJECT_TYPE} -n {NAMESPACE} [-o wide]
+
+# Deployment rollout history
+$ kubectl rollout history deployment {DEPLOYMENT_NAME} -n {NAMESPACE}
+
+# Rollback to previous version of a deployment
+$ kubectl rollout undo deployment {DEPLOYMENT_NAME} --to-revision={N} -n {NAMESPACE}
 
 # Get pod's logs
 $ kubectl logs {POD_NAME}
+
+# Scaling of ReplicaSet, Deployemnt, Statefulset
+$ kubectl scale {KUBERNETES_OBJECT_TYPE} {OBJECT_NAME} --replicas=3 -n {NAMESPACE}
 
 # Edit any kubernetes object as yaml file
 $ kubectl edit {KUBERNETES_OBJECT_TYPE}/{OBJECT_NAME} -n {NAMESPACE}
@@ -58,3 +67,8 @@ $ kubectl port-forward pods/{NAME_OF_POD} 8080:80
 - [Use Port Forwarding to Access Applications in a Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod)
 - [Get a Shell to a Running Container](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/)
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+## Adiitional links
+- [CERTIFIED KUBERNETES ADMINISTRATOR (CKA)](https://www.cncf.io/certification/cka/)
+- [The Complete Guide on Getting Certified in Kubernetes(CKA) and getting Hands-on](https://medium.com/devopsturkiye/the-complete-guide-on-getting-certified-in-kubernetes-cka-and-getting-hands-on-a6f4d18bb54b)
+- [Complete Kubernetes Tutorial for Beginners](https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC)
