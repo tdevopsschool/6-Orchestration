@@ -16,6 +16,10 @@ $ aws configure
   
 $ aws eks update-kubeconfig --name school
 ```
+---
+### Or you may use [Rancher desktop](https://rancherdesktop.io) to setup local Kubernetes cluster!
+> [Minikube](https://minikube.sigs.k8s.io/docs/) is OK as well, but we recommend Rancher as more easy tool.
+
 ## Homework 1
 *[#homework]() [#orchestration1]()*
 1. Create your Namespace
