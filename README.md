@@ -22,7 +22,7 @@ $ aws eks update-kubeconfig --name school
 
 ## Homework 1
 *[#homework]() [#orchestration1]()*
-1. Create your Namespace
+1. Create your Namespace.
 2. Create a deployment:
 - Nginx application with 3 replicas
 - Scale down it to 1 replica
@@ -30,7 +30,7 @@ $ aws eks update-kubeconfig --name school
 - Rollback to previous Nginx deployment with 3 replicas
 3. Create a staefulset:
 - Mongo DB with 3 replicas
-4. Send scrrenshots with version of **deployment** and **statefulset** in the chat with homework hashtags
+4. Send screenshots with version of **deployment** and **statefulset** in the chat with homework hashtags.
 
 ### Useful commands
 ```
@@ -71,6 +71,66 @@ $ kubectl port-forward pods/{NAME_OF_POD} 8080:80
 - [Use Port Forwarding to Access Applications in a Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod)
 - [Get a Shell to a Running Container](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/)
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/)
+
+## Homework 2
+*[#homework]() [#orchestration2]()*
+1. Cleanup your Namespace.
+2. Create and configure deployment in Gitlab Course project (use the pipelines from CI/CD homework):
+- Create Deployment yamls for backend and frontend
+- Create Deployment yaml for PostgreSQL DB with 1 replica and 1 PV
+- Create Services for all components
+- Create Ingress'. For Frontend use host format <NAMESPACE_NAME>.school.telekom.sh
+- Add probes
+- Add resource requests and limits
+3. Do deploy from Gitlab by pre-configuring the connection to the Kubernetes cluster in .gitlab-ci.yml
+4. Check that FE, Backend and DB are working together like entire application:
+- Insert a new course entry and a school with random name, then create a user with your name
+6. Send screenshots of browser with application UI (with the student entry) and URL in the chat with homework hashtags.
+
+## Links 2
+- [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
+- [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+- [Probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+- [Resource Management for Pods and Containers](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
+
+## Homework 3-1
+*[#homework]() [#orchestration3-1]()*
+1. Create in Gitlab another one project for helm charts.
+2. Create 3 Helm charts for course project components: Backend, Frontend, DB. Charts must include:
+- Deployment
+- Service
+- Ingress
+- PVC (for DB)
+3. In values:
+-  Image
+-  Replica counts
+-  Host for ingress
+4. Create another **values.yaml** file in Cource project repo to separate Dev and Prod installation:
+- Production installation should have 2 replicas for Frontend and Backend
+- Development installation should have 1 replicas for Frontend and Backend
+5. Create additional Namaspace in Kubernetes for Prod deployment.
+6. Rewrite gitlab-ci.yaml to do helm chart deployment
+7. Do deployments to Prod and Dev environments in Gitlab pipelines.
+8. Check Course project application in Dev and Prod envs.
+9. Send screenshots of published charts from Gitlab registry in the chat with homework hashtags.
+
+## Links 3-1
+- [Helm.sh](https://helm.sh)
+- [Helm charts in the Package Registry](https://docs.gitlab.com/ee/user/packages/helm_repository/)
+
+## Homework 3-2
+*[#homework]() [#orchestration3-2]()*
+1. Use helmfile to do deployement to Dev and Prod envs instead of using diffrent values.yaml files with pure Helm:
+- Create helmfile.yaml in Course project repository
+- Configure releases and values in helmfile.yaml
+- Create values.yaml and go templates if necessary for independent Dev and Prod deployemnt 
+- Rewrite gitlab-ci.yaml to do helmfile deployment
+2. Do deployment and check
+3. Send screenshots of helmfile.yaml in the chat with homework hashtags.
+
+## Links 3-2
+- [Helmfile documentation](https://github.com/roboll/helmfile)
+- [How to declaratively run Helm charts using helmfile](https://medium.com/swlh/how-to-declaratively-run-helm-charts-using-helmfile-ac78572e6088)
 
 ## Adiitional links
 - [CERTIFIED KUBERNETES ADMINISTRATOR (CKA)](https://www.cncf.io/certification/cka/)
