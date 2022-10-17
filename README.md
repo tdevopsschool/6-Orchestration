@@ -136,3 +136,4 @@ $ kubectl port-forward pods/{NAME_OF_POD} 8080:80
 - [CERTIFIED KUBERNETES ADMINISTRATOR (CKA)](https://www.cncf.io/certification/cka/)
 - [The Complete Guide on Getting Certified in Kubernetes(CKA) and getting Hands-on](https://medium.com/devopsturkiye/the-complete-guide-on-getting-certified-in-kubernetes-cka-and-getting-hands-on-a6f4d18bb54b)
 - [Complete Kubernetes Tutorial for Beginners](https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC)
+- [Kubernetes Debug algoritm](https://hsto.org/webt/u3/mo/qv/u3moqv94rhagxo6hlq-feuawtyc.png)
