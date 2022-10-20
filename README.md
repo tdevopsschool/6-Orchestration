@@ -105,14 +105,15 @@ $ kubectl port-forward pods/{NAME_OF_POD} 8080:80
 -  Image
 -  Replica counts
 -  Host for ingress
-4. Create another **values.yaml** file in Cource project repo to separate Dev and Prod installation:
+4. Publish charts in Gitlab Helm repository of your git project.
+5. Create another **values.yaml** file in Cource project repo to separate Dev and Prod installation:
 - Production installation should have 2 replicas for Frontend and Backend
 - Development installation should have 1 replicas for Frontend and Backend
-5. Create additional Namaspace in Kubernetes for Prod deployment.
-6. Rewrite gitlab-ci.yaml to do helm chart deployment
-7. Do deployments to Prod and Dev environments in Gitlab pipelines.
-8. Check Course project application in Dev and Prod envs.
-9. Send screenshots of published charts from Gitlab registry in the chat with homework hashtags.
+6. Create additional Namaspace in Kubernetes for Prod deployment.
+7. Rewrite gitlab-ci.yaml to do helm chart deployment, using charts from Helm repository of helm chart git project.
+8. Do deployments to Prod and Dev environments in Gitlab pipelines.
+9. Check Course project application in Dev and Prod envs.
+10. Send screenshots of published charts from Gitlab registry in the chat with homework hashtags.
 
 ## Links 3-1
 - [Helm.sh](https://helm.sh)
