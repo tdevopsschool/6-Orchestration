@@ -34,9 +34,10 @@ $ aws eks update-kubeconfig --name school
 1. Use prepared Docker image for deployment job.
 2. Configure variables in Gitlab group or [project level](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) variables:
 ```
-AWS_DEFAULT_REGION= XXXXXXXXXX
+AWS_REGION= XXXXXXXXXX
 AWS_ACCESS_KEY_ID= XXXXXXXXXX
 AWS_SECRET_ACCESS_KEY= XXXXXXXXXX
+AWS_DEFAULT_OUTPUT= json
 ```
 3. Make cluster connection in `before_script` section:
 ```
