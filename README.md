@@ -1,4 +1,4 @@
-## Prerequirements
+## Local Prerequirements
 ### Install
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
 - [AWS Authentificator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
@@ -16,9 +16,43 @@ $ aws configure
   
 $ aws eks update-kubeconfig --name school
 ```
----
+
 ### Or you may use [Rancher desktop](https://rancherdesktop.io) to setup local Kubernetes cluster!
 > [Minikube](https://minikube.sigs.k8s.io/docs/) is OK as well, but we recommend Rancher as more easy tool.
+
+## Gitlab to K8s cluster connection configuration
+### Prepare Docker image
+>You will use the image as base image of deployment job. You can insert installation command right in script section of deployment job, but will be much better to create a new git repo to build and store the prepared Docker image. 
+1. In Dockerfile add installtion of tools list:
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
+- [AWS Authentificator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+- [Helm](https://helm.sh/docs/intro/install/)
+- [Helmfile](https://github.com/helmfile/helmfile#installation)
+2. Build and push the image in Gitlab registry (or you may use another registry to store the image)
+### Provide auth variables in deployment job
+1. Use prepared Docker image for deployment job.
+2. Configure variables in Gitlab group or [project level](https://docs.gitlab.com/ee/ci/variables/#add-a-cicd-variable-to-a-project) variables:
+```
+AWS_DEFAULT_REGION= XXXXXXXXXX
+AWS_ACCESS_KEY_ID= XXXXXXXXXX
+AWS_SECRET_ACCESS_KEY= XXXXXXXXXX
+```
+3. Make cluster connection in `before_script` section:
+```
+before_sctipt:
+  - aws sts get-caller-identity # Check connection
+  - aws eks update-kubeconfig --name school # Get kube config
+script:
+  - # kubectl or helm or helmfile 
+```
+
+### P.S.
+> If [Connecting a Kubernetes cluster with GitLab](https://docs.gitlab.com/ee/user/clusters/agent/index.html) is working on current moment you may use this connection approach as well.
+
+### Connections links
+- [Amazon EKS cluster automation with GitLab CI/CD](https://aws.amazon.com/ru/blogs/containers/amazon-eks-cluster-automation-with-gitlab-ci-cd/)
+- [Connecting a Kubernetes cluster with GitLab](https://docs.gitlab.com/ee/user/clusters/agent/index.html)
 
 ## Homework 1
 *[#homework]() [#orchestration1]()*
@@ -133,7 +167,7 @@ $ kubectl port-forward pods/{NAME_OF_POD} 8080:80
 - [Helmfile documentation](https://github.com/roboll/helmfile)
 - [How to declaratively run Helm charts using helmfile](https://medium.com/swlh/how-to-declaratively-run-helm-charts-using-helmfile-ac78572e6088)
 
-## Adiitional links
+## Additional links
 - [CERTIFIED KUBERNETES ADMINISTRATOR (CKA)](https://www.cncf.io/certification/cka/)
 - [The Complete Guide on Getting Certified in Kubernetes(CKA) and getting Hands-on](https://medium.com/devopsturkiye/the-complete-guide-on-getting-certified-in-kubernetes-cka-and-getting-hands-on-a6f4d18bb54b)
 - [Complete Kubernetes Tutorial for Beginners](https://www.youtube.com/playlist?list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC)
