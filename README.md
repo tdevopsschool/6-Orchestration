@@ -1,3 +1,5 @@
+moved to https://gitlab.com/t-systems-devops-school/6-Orchestration
+
 ## Local Prerequirements
 ### Install
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
